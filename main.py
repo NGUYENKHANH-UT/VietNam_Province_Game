@@ -13,12 +13,8 @@ all_province = data.Name.to_list()
 user_answer = []
 
 while len(user_answer) < 63:
-    missing_province = []
-    answer_province = screen.textinput(f"{len(user_answer)}/63 Province Correct", "What's another province's Name?").title()
     if answer_province == "Exit":
-        for province in all_province:
-            if province not in user_answer:
-                missing_province.append(province)
+        missing_province = [ province for province in all_province if province not in user_answer]
         miss_data = pandas.DataFrame(missing_province)
         miss_data.to_csv("province_to_learn.csv")
         break
